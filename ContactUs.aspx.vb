@@ -11,21 +11,24 @@ Partial Class _default
         Dim msg As New MailMessage
         Dim client As New SmtpClient
 
-        Dim sendersName As String
-        Dim sendersEmail As String
-        Dim sendersSubject As String
-        Dim sendersMessage As String
 
-        sendersName = senderName.Text.ToString() 'capture the senders name from the textbox
+        Dim sendersEmail As String
+        Dim sendersMessage As String
+        If senderAddress.Text = "" Then
+            lbl_email.Text = "Please Include Email"
+            Exit Sub
+        End If
+
+        If senderMessage.Text = "" Then
+            lbl_message.Text = "Please Include a Message"
+            Exit Sub
+        End If
         sendersEmail = senderAddress.Text.ToString() 'capture the senders email from the textbox
-        sendersSubject = senderSubject.Text.ToString() 'capture the senders subject from the textbox
         sendersMessage = senderMessage.Text.ToString().Replace(Environment.NewLine, "<br />")   ' get the text from the message textbox keep text box formatting by replacing new lines (returns) with <br/>
 
 
-        msg.To.Add("michael-colbert@uiowa.edu")  'destination email address
+        msg.To.Add("test@test.com")  'destination email address
         msg.From = New MailAddress("ui.6k183@gmail.com")  'account used to send the email.
-        msg.ReplyToList.Add(sendersEmail) 'set the senders email address as the "reply to" for easy of sending a response
-        msg.Subject = sendersSubject  'set the message subject line
         msg.Body = sendersMessage  'add the message body
         msg.IsBodyHtml = True
 
@@ -45,7 +48,7 @@ Partial Class _default
         confirmSent.Text = "Thank you.  Your message has been sent."
 
         'After the message has displayed for 2 seconds, "reload" the page.
-        Response.AddHeader("REFRESH", "2;URL=default.aspx")
+        Response.AddHeader("REFRESH", "3;URL=default.aspx")
 
 
     End Sub
