@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="~/css/Stylesheet.css" />
     <style type="text/css">
         .auto-style1 {
             font-size: xx-small;
@@ -32,7 +33,7 @@
 &nbsp;|
         <asp:HyperLink ID="HyperLink4" runat="server" Font-Size="Small" ForeColor="Black" NavigateUrl="~/ContactUs.aspx">Contact</asp:HyperLink>
    
-    <div>
+    <div style="margin-left: 92px; width: 478px;">
     
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:msci3300_g3ConnectionString %>" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Jbonnett_HW6] WHERE ([RecipeName] = @RecipeName)" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [Jbonnett_HW6] WHERE [RecipeName] = @original_RecipeName AND (([Author] = @original_Author) OR ([Author] IS NULL AND @original_Author IS NULL)) AND (([Ingredient_1] = @original_Ingredient_1) OR ([Ingredient_1] IS NULL AND @original_Ingredient_1 IS NULL)) AND (([Ingredient_2] = @original_Ingredient_2) OR ([Ingredient_2] IS NULL AND @original_Ingredient_2 IS NULL)) AND (([Ingredient_3] = @original_Ingredient_3) OR ([Ingredient_3] IS NULL AND @original_Ingredient_3 IS NULL)) AND (([Ingredient_4] = @original_Ingredient_4) OR ([Ingredient_4] IS NULL AND @original_Ingredient_4 IS NULL)) AND (([Ingredient_5] = @original_Ingredient_5) OR ([Ingredient_5] IS NULL AND @original_Ingredient_5 IS NULL)) AND (([Prep] = @original_Prep) OR ([Prep] IS NULL AND @original_Prep IS NULL)) AND (([Notes] = @original_Notes) OR ([Notes] IS NULL AND @original_Notes IS NULL))" InsertCommand="INSERT INTO [Jbonnett_HW6] ([RecipeName], [Author], [Ingredient_1], [Ingredient_2], [Ingredient_3], [Ingredient_4], [Ingredient_5], [Prep], [Notes]) VALUES (@RecipeName, @Author, @Ingredient_1, @Ingredient_2, @Ingredient_3, @Ingredient_4, @Ingredient_5, @Prep, @Notes)" UpdateCommand="UPDATE [Jbonnett_HW6] SET [Author] = @Author, [Ingredient_1] = @Ingredient_1, [Ingredient_2] = @Ingredient_2, [Ingredient_3] = @Ingredient_3, [Ingredient_4] = @Ingredient_4, [Ingredient_5] = @Ingredient_5, [Prep] = @Prep, [Notes] = @Notes WHERE [RecipeName] = @original_RecipeName AND (([Author] = @original_Author) OR ([Author] IS NULL AND @original_Author IS NULL)) AND (([Ingredient_1] = @original_Ingredient_1) OR ([Ingredient_1] IS NULL AND @original_Ingredient_1 IS NULL)) AND (([Ingredient_2] = @original_Ingredient_2) OR ([Ingredient_2] IS NULL AND @original_Ingredient_2 IS NULL)) AND (([Ingredient_3] = @original_Ingredient_3) OR ([Ingredient_3] IS NULL AND @original_Ingredient_3 IS NULL)) AND (([Ingredient_4] = @original_Ingredient_4) OR ([Ingredient_4] IS NULL AND @original_Ingredient_4 IS NULL)) AND (([Ingredient_5] = @original_Ingredient_5) OR ([Ingredient_5] IS NULL AND @original_Ingredient_5 IS NULL)) AND (([Prep] = @original_Prep) OR ([Prep] IS NULL AND @original_Prep IS NULL)) AND (([Notes] = @original_Notes) OR ([Notes] IS NULL AND @original_Notes IS NULL))">
             <DeleteParameters>
@@ -81,11 +82,12 @@
             </UpdateParameters>
         </asp:SqlDataSource>
     
-    </div>
+        
     
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     
-    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="RecipeName" DataSourceID="SqlDataSource1" Height="50px" Width="334px" style="margin-left: 74px">
+    
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="deletedrecipe"><asp:Label ID="lbl_deletedrecipe" runat="server"></asp:Label>
+    <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="RecipeName" DataSourceID="SqlDataSource1" Height="50px" Width="334px" style="margin-left: 12px">
         <Fields>
             <asp:BoundField DataField="RecipeName" HeaderText="Recipe Name" ReadOnly="True" SortExpression="RecipeName" />
             <asp:BoundField DataField="Author" HeaderText="Submitted By" SortExpression="Author" />
@@ -99,9 +101,10 @@
             <asp:CommandField ButtonType="Button" ShowDeleteButton="True" ShowEditButton="True" />
         </Fields>
     </asp:DetailsView>
+        </span>
     <p class="auto-style1">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;2015 MSCI:3300 Software Design &amp; Development</p>
-
+    </div>
     </form> 
 </body>
 </html>
